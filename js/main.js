@@ -45,7 +45,7 @@ function start_clock(){
 
 	needles(document.getElementById("second"), size_second*r, 6*time.getSeconds(), cx, cy);
 	needles(document.getElementById("minute"), size_minute*r, 6*time.getMinutes(), cx, cy);
-	needles(document.getElementById("hour"), size_hour*r, 30*time.getHours(), cx, cy);
+	needles(document.getElementById("hour"), size_hour*r, 30*(time.getHours() + time.getMinutes()/60), cx, cy);
 }
 
 initialise();
