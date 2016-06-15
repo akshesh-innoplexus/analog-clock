@@ -3,6 +3,7 @@
 
 </head>
 <body>
+
 <div>
 <svg width="400" height="400">
 <g>
@@ -15,26 +16,34 @@
 	<circle id="small_circle" style="stroke: black; fill: black;stroke-width:2;" cx="200" cy="200" r="5"></circle>
 </g>
 <g>
-	<line x1="200" y1="200" x2="200" y2="115" style="stroke-width: 6px; stroke: black;" id="hour"/>
-	<line x1="200" y1="200" x2="110" y2="115" style="stroke-width: 4px; stroke: black;"  id="minute"/>
-	<line x1="200" y1="200" x2="310" y2="230"  style="stroke-width: 2px; stroke: black;"   id="second"/>
+	<line x1="200" y1="200" x2="200" y2="200" style="stroke-width: 6px; stroke: black;" id="hour"/>
+	<line x1="200" y1="200" x2="200" y2="200" style="stroke-width: 4px; stroke: black;"  id="minute"/>
+	<line x1="200" y1="200" x2="200" y2="200"  style="stroke-width: 2px; stroke: black;"   id="second"/>
 </g>
 </svg>
 </div>
 <script type="text/javascript">
-	var size_second = 0.95,
-		size_minute = 0.85,
-		size_hour = 0.55;
+	start_clock();
+	setInterval(start_clock, 1000);
+	function start_clock(){
+		var size_second = 0.85,
+			size_minute = 0.75,
+			size_hour = 0.55;
 
-	var cx=200, cy=200;
-	var time = new Date();
+		var cx=200, cy=200, r=150;
+		var time = new Date();
 
-	needles(document.getElementById("second"), size_second, 6*time.getSeconds());
-	needles(document.getElementById("minute"), size_minute, 6*time.getMinutes());
-	needles(document.getElementById("hour"), size_hour, 30*time.getHours());
+		needles(document.getElementById("second"), size_second*r, 6*time.getSeconds(), cx, cy);
+		needles(document.getElementById("minute"), size_minute*r, 6*time.getMinutes(), cx, cy);
+		needles(document.getElementById("hour"), size_hour*r, 30*time.getHours(), cx, cy);
 
-	function needles(hand, size, angle){
-		
+		function needles(hand, size, angle, cx, cy){
+			x2 = cx + size*Math.cos((angle*Math.PI/180) - Math.PI/2);
+			y2 = cy + size*Math.sin((angle*Math.PI/180) - Math.PI/2);
+
+			hand.setAttribute('x2', x2);
+			hand.setAttribute('y2', y2);
+		}
 	}
 
 </script>
