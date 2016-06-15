@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Analog Clock</title>
+</head>
+
+<body>
+<div >
+<canvas id="canvas" width="400" height="400"></canvas>
+</div>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var radius = canvas.height / 2;
+	//change the origin to the center of canvas
+	ctx.translate(radius, radius);
+	radius = radius*0.90;
+	// start_clock(ctx, radius);
+	setInterval(start_clock, 1000);
+
+function start_clock(){
+	joining_point(ctx, radius);
+	put_numbers(ctx, radius);
+	clock_time(ctx, radius);
+}
+
+function joining_point(ctx, radius){
+	var grad;
+	ctx.beginPath();
+	// ctx.rect(-190, -190, 380, 380);
+	ctx.arc(0, 0, radius, 0, 2*Math.PI, false);
+	ctx.fillStyle = 'white';
+	ctx.fill();
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = 'black';
+    ctx.stroke();
+	
+	ctx.lineWidth = radius*0.1;
+	ctx.beginPath();
+	ctx.arc(0, 0, radius*0.05, 0, 2*Math.PI);
+	ctx.fillStyle = 'black';
+	ctx.fill();
+}
+
+function put_numbers(ctx, radius){
+	var n, theta;
+	ctx.font = radius*0.15 + "px arial";
+	ctx.textBaseline="middle";
+    ctx.textAlign="center";
+    for(n= 3; n < 13; n=n+3){
+        theta = n*Math.PI / 6;
+        ctx.rotate(theta);
+        ctx.translate(0, -radius*0.9);
+        ctx.rotate(-theta);
+        ctx.fillText(n.toString(), 0, 0);
+        ctx.rotate(theta);
+        ctx.translate(0, radius*0.9);
+        ctx.rotate(-theta);
+    }
+}
+
+function clock_time(ctx, radius){
+	var time = new Date();
+	var hour = time.getHours();
+	var minute = time.getMinutes();
+	var second = time.getSeconds();
+	hour=hour%12;
+	hour=(hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
+    needles(ctx, hour, radius*0.5, radius*0.06);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    needles(ctx, minute, radius*0.7, radius*0.04);
+    // second
+    second=(second*Math.PI/30);
+    needles(ctx, second, radius*0.8, radius*0.02);
+
+}
+
+function needles(ctx, t, l, w){
+	ctx.beginPath();
+    ctx.lineWidth = w;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(t);
+    ctx.lineTo(0, -l);
+    ctx.stroke();
+    ctx.rotate(-t);
+}
+</script>
+</body>
+</html>
