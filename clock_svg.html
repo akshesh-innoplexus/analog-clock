@@ -8,20 +8,24 @@
 <svg width="400" height="400">
 <g>
 	<circle id="circle" style="stroke: black; fill: #f8f8f8;stroke-width:2;" cx="200" cy="200" r="150"></circle>
-	<line id="num0" x1="200" y1="70" x2="200" y2="50" style="stroke:black;stroke-width:2"></line>
+	<!-- <line id="num0" x1="200" y1="70" x2="200" y2="50" style="stroke:black;stroke-width:2"></line>
 	<line id="num3" x1="350" y1="200" x2="330" y2="200" style="stroke:black;stroke-width:2"></line>
 	<line id="num6" x1="200" y1="350" x2="200" y2="330" style="stroke:black;stroke-width:2"></line>
-	<line id="num9" x1="50" y1="200" x2="70" y2="200" style="stroke:black;stroke-width:2"></line>
+	<line id="num9" x1="50" y1="200" x2="70" y2="200" style="stroke:black;stroke-width:2"></line> -->
+	<text x="192" y="70" fill="black" style="font-weight:bold;font-size:20px;">12</text>
+	<text x="332" y="206" fill="black" style="font-weight:bold;font-size:20px">3</text>
+	<text x="195" y="343" fill="black" style="font-weight:bold;font-size:20px">6</text>
+	<text x="58" y="206" fill="black" style="font-weight:bold;font-size:20px">9</text>
 
 	<circle id="small_circle" style="stroke: black; fill: black;stroke-width:2;" cx="200" cy="200" r="5"></circle>
-</g>
-<g>
+
 	<line x1="200" y1="200" x2="200" y2="200" style="stroke-width: 6px; stroke: black;" id="hour"/>
 	<line x1="200" y1="200" x2="200" y2="200" style="stroke-width: 4px; stroke: black;"  id="minute"/>
 	<line x1="200" y1="200" x2="200" y2="200"  style="stroke-width: 2px; stroke: black;"   id="second"/>
 </g>
 </svg>
 </div>
+
 <script type="text/javascript">
 	start_clock();
 	setInterval(start_clock, 1000);
